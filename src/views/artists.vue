@@ -1,6 +1,6 @@
 <template>
 <div>
-  home312312312
+    artists
 </div>
 </template>
 
