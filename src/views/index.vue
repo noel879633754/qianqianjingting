@@ -8,22 +8,22 @@
         </li>
         <li>
             <router-link to="/artists">
-                <img src="../assets/logo-ea5.png" alt="">
+                歌手
             </router-link>
         </li>
         <li>
             <router-link to="/listcate">
-                <img src="../assets/logo-ea5.png" alt="">
+                榜单
             </router-link>
         </li>
         <li>
             <router-link to="/ucenter">
-                <img src="../assets/logo-ea5.png" alt="">
+                我的
             </router-link>
         </li>
         <li>
             <router-link to="/search">
-                <img src="../assets/logo-ea5.png" alt="">
+                搜索
             </router-link>
         </li>
     </ul>
