@@ -11,6 +11,7 @@ import KingList from './views/musiclist/king_list.vue'
 import NewsList from './views/musiclist/news_list.vue'
 import MoreList from './views/morelist.vue'
 import MusicPlay from './views/musicplay.vue'
+import ArtistsDetails from './views/artistsdetails/artistsdetails.vue'
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ export default new Router({
         {
           path: 'artists',
           component: Artists
+        },
+        {
+          path: 'artistsdetails',
+          component: ArtistsDetails,
+          name: 'ArtistsDetails'
         },
         {
           path: 'listcate',

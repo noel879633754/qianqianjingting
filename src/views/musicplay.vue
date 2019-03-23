@@ -23,10 +23,11 @@
 				<i class="iconfont icon-xiazai right"></i>
 			</div>
 		</div>
+    <Lrc :currentTime="abc" :durationTime="durationTime"></Lrc>
+
     <div class="song">
       <audio ref="player" :src="currentUrl.bitrate.show_link" controls autoplay></audio>
 		</div>
-    <Lrc :currentTime="currentTime" :durationTime="durationTime"></Lrc>
   </div>
 </template>
 
@@ -46,8 +47,9 @@ export default {
           show_link: ''
         }
       },
-      currentTime:0,
-      durationTime:0
+      durationTime:0,
+      currentTime: 0,
+      abc: 0
     }
   },
   mounted(){
@@ -56,6 +58,7 @@ export default {
       this.currentUrl = res.data
       console.log(res)
       console.log(this.currentUrl)
+      console.log(this.id)
     })
     .catch(err => {
       console.log(err)
@@ -75,9 +78,9 @@ export default {
        this.$refs.player.removeEventListener('canplay', this._durationTime)
      },
     _currentTime(){
-      this.currentTime = this.$refs.player.currentTime
+      this.abc = this.$refs.player.currentTime 
     },
-   _durationTime(){
+    _durationTime(){
       this.durationTime = this.$refs.player.duration
     }
   },

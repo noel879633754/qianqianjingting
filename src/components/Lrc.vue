@@ -1,12 +1,13 @@
 <template>
   <div class="lrcContainer">
     <div class="lrc" ref="lrc">
+      {{ getAllKey }}
       <p
         class="lrc-p"
-        v-for="(item,key,i) in lrcData"
-        :key="i"
-        v-show="f"
-        >
+        :class="{active:parseInt(currentTime) >= keyArr[index] && parseInt(currentTime) < keyArr[index+1]}"
+        v-for="(item,key,index) in lrcData"
+        :key="index">
+        {{ item }}{{ srcollLrc(key,index) }}
       </p>
     </div>
   </div>
@@ -14,12 +15,27 @@
 
 <script>
 export default {
+  name:"lrc",
   data(){
-    return {
-      id: this.$route.params.id,
-      lrc: {},
-      lrcData: {},
-      lrcArr: []
+    return{
+      lrc:{},
+      lrcData:{},
+      keyArr:[],
+      id: this.$route.params.id
+    }
+  },
+  props:{
+    songid:{
+      type:[String,Number],
+      default:""
+    },
+    currentTime:{
+      type:[String,Number],
+      default:0
+    },
+    durationTime:{
+      type:[String,Number],
+      default:0
     }
   },
   created(){
@@ -49,21 +65,27 @@ export default {
        console.log(error);
      })
   },
-  computed: {
-    getAllKey(){
-      for(let key in this.lrcData){
-        this.lrcArr.push(key)
+  methods: {
+    srcollLrc(key,i){
+      const lrcDiv = this.$refs.lrc
+      if(key < this.currentTime && key > this.currentTime - (this.keyArr[i+1] - this.keyArr[i])){
+        lrcDiv.style.top = -((i-2)*30)+"px"
       }
     }
   },
-  props: {
-    currentTime:{
-      type:[String,Number],
-      default:0
-    },
-    durationTime:{
-      type:[String,Number],
-      default:0
+  computed:{
+    getAllKey(){
+      for(var i in this.lrcData){
+        this.keyArr.push(i);
+      }
+    }
+  },
+  methods:{
+    srcollLrc(key,index){
+      const lrcDiv = this.$refs.lrc
+       if(key < this.currentTime && key > this.currentTime - (this.keyArr[index+1] - this.keyArr[index])){
+           lrcDiv.style.top = -((index-2)*30)+"px"
+       }
     }
   }
 }
@@ -91,5 +113,33 @@ export default {
 // .up30{
 // 	margin-top: -30px;
 // }
+
+
+
+.lrcContainer{
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.lrc{
+	width: 100%;
+  position: absolute;
+  top: 0;
+}
+.active{
+  color: red !important;
+}
+.lrc-p{
+  height: 30px;
+	line-height: 30px;
+  text-align: center;
+}
+
+.up30{
+	margin-top: -30px;
+}
+
 </style>
 
