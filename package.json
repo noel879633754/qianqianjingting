@@ -30,6 +30,7 @@
     "fibers": "^3.1.1",
     "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
+    "vue-pull-refresh": "^0.2.7",
     "vue-template-compiler": "^2.5.21"
   }
 }

@@ -7,16 +7,16 @@
         </router-link>
     </div>
     <div class="container">
-        <div class="gallery">
-            <div class="scroller">
-                <div class="card url" v-for="(item,i) in todayRecommend" :key="i">
-                    <div class="album">
-                        <img :src="item.pic_big" :alt="item.title">
-                        <div class="name">{{item.title}}</div>
-                    </div>
-                </div>
+      <div class="gallery">
+        <div class="scroller">
+          <router-link :to="{name: 'MusicPlay',params: {id: item.song_id}}" tag="div" class="card url" v-for="(item,i) in todayRecommend" :key="i">
+            <div class="album">
+              <img :src="item.pic_big" :alt="item.title">
+              <div class="name">{{item.title}}</div>
             </div>
+          </router-link>
         </div>
+      </div>
     </div>
   </div>
 </template>
@@ -34,10 +34,8 @@ export default {
     this.axios.get('/v1/restserver/ting?method=baidu.ting.billboard.billList&type=1&size=6&offset=0')
     .then(res => {
       this.todayRecommend = res.data.song_list
-      console.log(res)
     })
     .catch(err => {
-      console.log(err)
     })
   },
   props: {

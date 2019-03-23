@@ -9,12 +9,12 @@
     <div class="container">
         <div class="gallery">
             <div class="scroller">
-                <div class="card url" v-for="(item,i) in newsMusic" :key="i">
+                <router-link :to="{name: 'MusicPlay',params: {id: item.song_id}}" tag="div" class="card url" v-for="(item,i) in newsMusic" :key="i">
                     <div class="album">
                         <img :src="item.pic_big" :alt="item.title">
                         <div class="name">{{item.title}}</div>
                     </div>
-                </div>
+                </router-link>
             </div>
         </div>
     </div>
@@ -33,10 +33,8 @@ export default {
     this.axios.get('/v1/restserver/ting?method=baidu.ting.billboard.billList&type=2&size=3&offset=0')
     .then(res => {
       this.newsMusic = res.data.song_list
-      console.log(res)
     })
     .catch(err => {
-      console.log(err)
     })
   }
 }
