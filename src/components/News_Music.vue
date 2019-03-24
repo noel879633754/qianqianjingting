@@ -2,9 +2,9 @@
    <div class="mod-albums">
     <div class="hd log url">
         <h2>新歌速递</h2>
-        <div>
+        <router-link :to="{name: 'MoreList',params: {type: type}}" tag="div">
           更多
-        </div>
+        </router-link>
     </div>
     <div class="container">
         <div class="gallery">
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+
 export default {
   name: 'newsMusic',
   data() {
     return{
-      newsMusic: []
+      newsMusic: [],
+      type: 2
     }
   },
   mounted() {
@@ -36,6 +38,9 @@ export default {
     })
     .catch(err => {
     })
+  },
+  computed() {
+    MoreList
   }
 }
 </script>

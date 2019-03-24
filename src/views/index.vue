@@ -1,5 +1,7 @@
 <template>
 <div class="index">
+    <router-view></router-view>
+
     <ul>
         <li>
             <router-link to="/home">
@@ -27,7 +29,6 @@
             </router-link>
         </li>
     </ul>
-    <router-view></router-view>
 </div>
 </template>
 
@@ -44,6 +45,11 @@ export default {
         height: 50px;
         line-height: 50px;
         background: #f6f6f6;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        width: 100%;
         li{
             flex: 1;
             text-align: center;

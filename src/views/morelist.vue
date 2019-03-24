@@ -27,8 +27,8 @@ export default {
     }
   },
   created() {
-    var url = `/v1/restserver/ting?method=baidu.ting.billboard.billList&type=${this.$route.params.type}&size=6&offset=0`
-    this.axios.get('/v1/restserver/ting?method=baidu.ting.billboard.billList&type=1&size=24&offset=0')
+    var url = `/v1/restserver/ting?method=baidu.ting.billboard.billList&type=${this.$route.params.type}&size=20&offset=0`
+    this.axios.get(url)
     .then(res => {
       this.todayRecommend = res.data.song_list
     })
